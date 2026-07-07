@@ -1,0 +1,16 @@
+export const queryKeys = {
+  all: ['garage'],
+  inventory: () => [...queryKeys.all, 'inventory'],
+  customers: () => [...queryKeys.all, 'customers'],
+  customerProfile: (id) => [...queryKeys.all, 'customers', id, 'profile'],
+  estimates: () => [...queryKeys.all, 'estimates'],
+  jobs: () => [...queryKeys.all, 'jobs'],
+  expenses: () => [...queryKeys.all, 'expenses'],
+  investors: () => [...queryKeys.all, 'investors'],
+  notifications: () => [...queryKeys.all, 'notifications'],
+  approvals: () => [...queryKeys.all, 'approvals'],
+  stats: () => [...queryKeys.all, 'stats'],
+  users: () => [...queryKeys.all, 'users'],
+  technicians: () => [...queryKeys.all, 'technicians'],
+  me: () => [...queryKeys.all, 'me'],
+};

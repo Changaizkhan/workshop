@@ -1,0 +1,310 @@
+@import "tailwindcss";
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Scrollable data tables on small screens */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-scroll table {
+  min-width: 36rem;
+}
+
+@media (min-width: 1024px) {
+  .table-scroll table {
+    min-width: 0;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .estimate-doc {
+    max-width: none !important;
+    box-shadow: none !important;
+  }
+
+  .estimate-watermark img {
+    opacity: 0.1 !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .estimate-section-title,
+  .estimate-panel-title,
+  .estimate-summary-title,
+  .estimate-summary-total {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* Horse Power brand — estimate / invoice print */
+.estimate-doc--horsepower {
+  --hp-red: #a8101c;
+  --hp-red-dark: #7a0b14;
+  --hp-charcoal: #1a1a1a;
+  --hp-charcoal-mid: #2d2d2d;
+  --hp-silver: #d4d8de;
+  --hp-silver-light: #eef0f3;
+  --hp-silver-dark: #6b7280;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fafafa 0%, #f0f1f3 100%);
+  color: var(--hp-charcoal);
+}
+
+.estimate-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.estimate-watermark img {
+  width: 62%;
+  max-width: 460px;
+  opacity: 0.09;
+  object-fit: contain;
+}
+
+.estimate-doc-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hp-print-toolbar {
+  position: relative;
+  z-index: 2;
+  background: var(--hp-charcoal);
+  border-bottom: 3px solid var(--hp-red);
+}
+
+.hp-print-btn {
+  background: var(--hp-red);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  border: none;
+}
+
+.hp-print-btn:hover {
+  background: var(--hp-red-dark);
+}
+
+.hp-print-btn--muted {
+  background: var(--hp-charcoal-mid);
+}
+
+.estimate-logo {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+}
+
+.estimate-brand-name {
+  font-size: 1.15rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.estimate-brand-horse {
+  color: var(--hp-red);
+}
+
+.estimate-brand-power {
+  color: var(--hp-charcoal);
+}
+
+.estimate-brand-tagline {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--hp-silver-dark);
+}
+
+.estimate-header-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 2px solid var(--hp-charcoal);
+  background: #fff;
+}
+
+@media (min-width: 640px) {
+  .estimate-header-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.estimate-header-brand {
+  padding: 0.75rem;
+  border-bottom: 2px solid var(--hp-charcoal);
+  border-left: 5px solid var(--hp-red);
+  background: linear-gradient(135deg, #fff 0%, var(--hp-silver-light) 100%);
+}
+
+@media (min-width: 640px) {
+  .estimate-header-brand {
+    border-bottom: none;
+    border-right: 2px solid var(--hp-charcoal);
+  }
+}
+
+.estimate-header-meta {
+  padding: 0.75rem;
+  font-size: 10px;
+  background: #fff;
+}
+
+.estimate-panel {
+  border: 1px solid var(--hp-charcoal);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.estimate-panel-title {
+  background: linear-gradient(90deg, var(--hp-charcoal) 0%, var(--hp-charcoal-mid) 100%);
+  color: #fff;
+  border-bottom: 2px solid var(--hp-red);
+  padding: 0.3rem 0.5rem;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.estimate-field-label {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--hp-red);
+  line-height: 1.2;
+}
+
+.estimate-field-value {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--hp-charcoal);
+  margin-top: 0.15rem;
+  word-break: break-word;
+}
+
+.estimate-section {
+  border: 1px solid var(--hp-charcoal);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.estimate-section-title {
+  background: linear-gradient(90deg, var(--hp-silver-light) 0%, #fff 100%);
+  border-bottom: 2px solid var(--hp-red);
+  border-left: 4px solid var(--hp-red);
+  padding: 0.3rem 0.5rem;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--hp-charcoal);
+}
+
+.estimate-table {
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.estimate-table th,
+.estimate-table td {
+  border: 1px solid var(--hp-silver);
+  padding: 0.35rem 0.45rem;
+  vertical-align: top;
+}
+
+.estimate-table thead th {
+  background: var(--hp-charcoal);
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 9px;
+}
+
+.estimate-table tbody tr:nth-child(even) {
+  background: var(--hp-silver-light);
+}
+
+.estimate-table tfoot td {
+  background: var(--hp-silver-light);
+  border-top: 2px solid var(--hp-charcoal);
+  font-weight: 800;
+}
+
+.estimate-summary {
+  border: 2px solid var(--hp-charcoal);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.estimate-summary-title {
+  background: var(--hp-charcoal);
+  color: #fff;
+  border-bottom: 3px solid var(--hp-red);
+  padding: 0.35rem 0.5rem;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.08em;
+}
+
+.estimate-summary-row {
+  border-bottom: 1px solid var(--hp-silver);
+}
+
+.estimate-summary-total {
+  background: linear-gradient(90deg, var(--hp-charcoal) 0%, var(--hp-charcoal-mid) 100%);
+  color: #fff;
+}
+
+.estimate-summary-total td:last-child {
+  color: #fff;
+}
+
+.estimate-sig-line {
+  border-bottom: 2px solid var(--hp-charcoal);
+  height: 3rem;
+  margin-bottom: 0.25rem;
+}
